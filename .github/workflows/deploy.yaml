@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Static Site
         # Здесь мы явно форсируем режим экспорта через переменную
-        run: BUILD_MODE=export npm run build
+        run: BUILD_MODE=export npm run export
 
       - name: Debug Folders (Проверка папок)
         # Этот шаг покажет в логах, где на самом деле лежат файлы
