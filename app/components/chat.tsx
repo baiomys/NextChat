@@ -1442,7 +1442,7 @@ function _Chat() {
           setTimeout(() => {
              window.location.hash = "/"; 
              window.location.reload();
-          }, 100);
+          }, 500);
         }
       } catch {
         console.error("[Command] failed to get settings from url: ", text);
