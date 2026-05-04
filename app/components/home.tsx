@@ -236,7 +236,7 @@ export function Home() {
 
     const initMcp = async () => {
       try {
-        const enabled = await isMcpEnabled();
+        const enabled = false;
       } catch (err) {
         console.error("[MCP] failed to initialize:", err);
       }
