@@ -241,49 +241,11 @@ export function SideBar(props: { className?: string }) {
       {...props}
     >
       <SideBarHeader
-        title="NextChat"
-        subTitle="Build your own AI assistant."
+        title="InfinityAPI"
+        subTitle="Your own AI assistant."
         logo={<ChatGptIcon />}
         shouldNarrow={shouldNarrow}
       >
-        <div className={styles["sidebar-header-bar"]}>
-          <IconButton
-            icon={<MaskIcon />}
-            text={shouldNarrow ? undefined : Locale.Mask.Name}
-            className={styles["sidebar-bar-button"]}
-            onClick={() => {
-              if (config.dontShowMaskSplashScreen !== true) {
-                navigate(Path.NewChat, { state: { fromHome: true } });
-              } else {
-                navigate(Path.Masks, { state: { fromHome: true } });
-              }
-            }}
-            shadow
-          />
-          <IconButton
-            icon={<DiscoveryIcon />}
-            text={shouldNarrow ? undefined : Locale.Discovery.Name}
-            className={styles["sidebar-bar-button"]}
-            onClick={() => setshowDiscoverySelector(true)}
-            shadow
-          />
-        </div>
-        {showDiscoverySelector && (
-          <Selector
-            items={[
-              ...DISCOVERY.map((item) => {
-                return {
-                  title: item.name,
-                  value: item.path,
-                };
-              }),
-            ]}
-            onClose={() => setshowDiscoverySelector(false)}
-            onSelection={(s) => {
-              navigate(s[0], { state: { fromHome: true } });
-            }}
-          />
-        )}
       </SideBarHeader>
       <SideBarBody
         onClick={(e) => {
