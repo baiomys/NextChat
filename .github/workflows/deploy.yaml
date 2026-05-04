@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main"] # Убедись, что ветка совпадает (main или master)
   workflow_dispatch:
 
 permissions:
@@ -11,10 +11,7 @@ permissions:
   id-token: write
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,15 +26,21 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
+      - name: Build Static Site
+        # Здесь мы явно форсируем режим экспорта через переменную
+        run: BUILD_MODE=export npm run build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Debug Folders (Проверка папок)
+        # Этот шаг покажет в логах, где на самом деле лежат файлы
+        run: |
+          echo "Checking directory structure..."
+          ls -R
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          # Если папка out точно есть, берем её. 
+          # Если Next.js почему-то сложил всё в другое место, логи выше это покажут.
           path: './out'
 
       - name: Deploy to GitHub Pages
