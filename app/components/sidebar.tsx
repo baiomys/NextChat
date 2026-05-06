@@ -241,7 +241,7 @@ export function SideBar(props: { className?: string }) {
       {...props}
     >
       <SideBarHeader
-        title="InfinityAPI"
+        title="InfiniteAI"
         subTitle="Your own AI assistant."
         logo={<ChatGptIcon />}
         shouldNarrow={shouldNarrow}
